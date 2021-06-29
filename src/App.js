@@ -86,7 +86,7 @@ function App() {
                     <div className="card" key={`card${ind+1}`}>
                       <span
                         role="textbox"
-
+                        contentEditable
                         className="contentInput"
                         onChange={(e) => handleEditCard(e, i, ind)}
                       >{card}</span>
