@@ -84,11 +84,12 @@ function App() {
                     <div className="card" key={`card${ind+1}`}>
                       <span
                         role="textbox"
+                        contentEditable
                         className="contentInput"
-                        onChange={(e) => handleEditCard(e, ind)}
+                        onChange={(e) => handleEditCard(e, i, ind)}
                       >{card}</span>
                       <button 
-                        onClick={(e) => handleDeleteCard(e, ind)}
+                        onClick={(e) => handleDeleteCard(e, i, ind)}
                         className="deleteCardBtn"
                       >Delete</button>
 

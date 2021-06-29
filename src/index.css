@@ -49,6 +49,7 @@ body {
   display: block;
   border: none;
   margin-bottom: 10px;
+  max-width: 250px;
 }
 
 .listTitle {
