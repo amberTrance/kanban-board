@@ -2,11 +2,11 @@ import { useState } from 'react'
 
 function App() {
   const [inputList, setInputList] = useState([
-    []
+    [{title: ''}]
   ])
   // [ [a,a,a,a,a, {title: blue}], [df,fdf,fdfd,fdfd]]
 
-  const handleAddCard = (e,i) => {
+  const handleAddCard = (e, i) => {
     const list = [...inputList]
 
     list[i].push(e.target.parentNode.firstChild.value)
@@ -24,7 +24,7 @@ function App() {
     setInputList(list)
   }
 
-  const handleDeleteCard = (e,i,ind) => {
+  const handleDeleteCard = (e, i, ind) => {
     const list = [...inputList]
 
     list[i].splice(ind, 1)
@@ -32,7 +32,7 @@ function App() {
     setInputList(list)
   }
 
-  const handleEditCard = (e,i,ind) => {
+  const handleEditCard = (e, i, ind) => {
     const list = [...inputList]
 
     list[i][ind] = e.target.value
@@ -44,6 +44,16 @@ function App() {
     const list = [...inputList]
 
     list[i].title = e.target.value
+
+    setInputList(list)
+  }
+
+  const handleDeleteList = (e, i) => {
+    const list = [...inputList]
+
+    list.splice(i, 1)
+    
+    setInputList(list)
   }
 
   return (
@@ -66,9 +76,9 @@ function App() {
                         type="text"
                         value={card} 
                         className="contentInput"
-                        onChange={(e) => handleEditCard(e,i,ind)}
+                        onChange={(e) => handleEditCard(e, i, ind)}
                       />
-                      <button onClick={(e) => handleDeleteCard(e,i,ind)}>Delete</button>
+                      <button onClick={(e) => handleDeleteCard(e, i, ind)}>Delete</button>
                     </div>}
                   </div>
                 )
@@ -76,7 +86,9 @@ function App() {
 
               <div>
                 <input type="text" placeholder="Add another card"/>
-                <button onClick={(e) => handleAddCard(e,i)}>Add Card</button>
+                <button onClick={(e) => handleAddCard(e, i)}>Add Card</button>
+                
+                <button onClick={(e) => handleDeleteList(e, i)}>Delete List</button>
               </div>
             </div> 
           )
