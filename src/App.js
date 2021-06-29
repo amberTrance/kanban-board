@@ -58,11 +58,11 @@ function App() {
   const handleSelect = (e, i, ind) => {
     const list = [...inputList]
 
-    list[e.target.value].push(list[i][ind])
-
-    list[i].splice(ind, 1)
-
-    setInputList(list)
+    if (e.target.value !== 'none') {
+      list[e.target.value].push(list[i][ind])
+      list[i].splice(ind, 1)
+      setInputList(list)
+    }
   }
 
   return (
@@ -109,7 +109,7 @@ function App() {
                               >
                                 {card[0].title}
                               </option>
-                            );
+                            )
                           })}
                       </select>
 
