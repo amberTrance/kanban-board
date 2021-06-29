@@ -9,10 +9,21 @@ body {
   margin: 20px;
 }
 
+.lists {
+  display: flex;
+}
+
 /* List container */
 .list-box {
   width: 250px;
   height: auto;
   background-color: lightgray;
   padding: 10px;
+  margin-right: 10px;
+}
+
+.card {
+  padding: 10px;
+  background-color: white;
+  margin-bottom: 10px;
 }
