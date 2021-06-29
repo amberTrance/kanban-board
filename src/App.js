@@ -79,7 +79,7 @@ function App() {
               />
               { list.map((card, ind) => {
                 return (
-                  <div>
+                  <div key={ind}>
                     {ind !== 0 && 
                     <div className="card" key={`card${ind+1}`}>
                       <span
