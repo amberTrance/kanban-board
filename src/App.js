@@ -69,12 +69,14 @@ function App() {
     <div className="App">
       <div className="lists">
         { inputList.map((list, i) => {
+          {console.log(inputList)}
           return (
             <div className="list-box" key={`list${i+1}`}>
               <input 
                 type="text" 
                 placeholder="Write title here"
                 className="listTitle"
+                value={inputList[i][0].title}
                 onChange={(e) => handleEditListTitle(e, i)}
               />
               { list.map((card, ind) => {
@@ -84,7 +86,7 @@ function App() {
                     <div className="card" key={`card${ind+1}`}>
                       <span
                         role="textbox"
-                        contentEditable
+
                         className="contentInput"
                         onChange={(e) => handleEditCard(e, i, ind)}
                       >{card}</span>
@@ -94,7 +96,7 @@ function App() {
                       >Delete</button>
 
                       <select
-                          className="move dropdown"
+                          className="move"
                           onChange={(e) => handleSelect(e, i, ind)}
                         >
                           <option value={"none"}>move</option>
