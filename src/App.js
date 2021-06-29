@@ -55,8 +55,14 @@ function App() {
     setInputList(list)
   }
 
-  const handleSelect = (e, i) => {
-    console.log(e.target)
+  const handleSelect = (e, i, ind) => {
+    const list = [...inputList]
+
+    list[e.target.value].push(list[i][ind])
+
+    list[i].splice(ind, 1)
+
+    setInputList(list)
   }
 
   return (
@@ -78,29 +84,30 @@ function App() {
                     <div className="card" key={`card${ind+1}`}>
                       <span
                         role="textbox"
-                        contentEditable
                         className="contentInput"
-                        onChange={(e) => handleEditCard(e, i, ind)}
+                        onChange={(e) => handleEditCard(e, ind)}
                       >{card}</span>
                       <button 
-                        onClick={(e) => handleDeleteCard(e, i, ind)}
+                        onClick={(e) => handleDeleteCard(e, ind)}
                         className="deleteCardBtn"
                       >Delete</button>
 
-
-                      <select className="move dropdown">
-                        <option value="">move</option>
-                        {inputList.map((card, i) => {
-                          return (
-                            <option 
-                              key={`title${i+1}`}
-                              name={card[0].title}
-                              onSelect={(e) => handleSelect(e, i)}
-                            >
-                              {card[0].title}
-                            </option>
-                          )
-                        })}
+                      <select
+                          className="move dropdown"
+                          onChange={(e) => handleSelect(e, i, ind)}
+                        >
+                          <option value={"none"}>move</option>
+                          {inputList.map((card, i) => {
+                            return (
+                              <option
+                                key={`title${i + 1}`}
+                                value={i}
+                                name={card[0].title}
+                              >
+                                {card[0].title}
+                              </option>
+                            );
+                          })}
                       </select>
 
                     </div>}
