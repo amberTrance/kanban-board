@@ -4,7 +4,6 @@ function App() {
   const [inputList, setInputList] = useState([
     [{title: ''}]
   ])
-  // [ [a,a,a,a,a, {title: blue}], [df,fdf,fdfd,fdfd]]
 
   const handleAddCard = (e, i) => {
     const list = [...inputList]
@@ -43,7 +42,7 @@ function App() {
   const handleEditListTitle = (e, i) => {
     const list = [...inputList]
 
-    list[i].title = e.target.value
+    list[i][0].title = e.target.value
 
     setInputList(list)
   }
@@ -54,6 +53,10 @@ function App() {
     list.splice(i, 1)
     
     setInputList(list)
+  }
+
+  const handleSelect = (e, i) => {
+    console.log(e.target)
   }
 
   return (
@@ -71,30 +74,64 @@ function App() {
               { list.map((card, ind) => {
                 return (
                   <div>
-                    {ind !== 0 && <div className="card" key={`card${ind+1}`}>
-                      <input 
-                        type="text"
-                        value={card} 
+                    {ind !== 0 && 
+                    <div className="card" key={`card${ind+1}`}>
+                      <span
+                        role="textbox"
+                        contentEditable
                         className="contentInput"
                         onChange={(e) => handleEditCard(e, i, ind)}
-                      />
-                      <button onClick={(e) => handleDeleteCard(e, i, ind)}>Delete</button>
+                      >{card}</span>
+                      <button 
+                        onClick={(e) => handleDeleteCard(e, i, ind)}
+                        className="deleteCardBtn"
+                      >Delete</button>
+
+
+                      <select className="move dropdown">
+                        <option value="">move</option>
+                        {inputList.map((card, i) => {
+                          return (
+                            <option 
+                              key={`title${i+1}`}
+                              name={card[0].title}
+                              onSelect={(e) => handleSelect(e, i)}
+                            >
+                              {card[0].title}
+                            </option>
+                          )
+                        })}
+                      </select>
+
                     </div>}
                   </div>
                 )
               })}
 
-              <div>
-                <input type="text" placeholder="Add another card"/>
-                <button onClick={(e) => handleAddCard(e, i)}>Add Card</button>
+              <div className="bottom">
+                <input 
+                  type="text" 
+                  placeholder="Add another card"
+                  className="addCardInput"
+                />
+                <button 
+                  onClick={(e) => handleAddCard(e, i)}
+                  className="addCardBtn"
+                >Add Card</button>
                 
-                <button onClick={(e) => handleDeleteList(e, i)}>Delete List</button>
+                <button 
+                  onClick={(e) => handleDeleteList(e, i)}
+                  className="deleteListBtn"
+                >Delete List</button>
               </div>
             </div> 
           )
         })}
       </div>
-      <button onClick={(e) => handleAddList(e)}>Add New List</button>
+      <button 
+        onClick={(e) => handleAddList(e)}
+        className="addListBtn"
+      >Add New List</button>
     </div>
   )
 }

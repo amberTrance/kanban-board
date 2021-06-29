@@ -15,26 +15,93 @@ body {
 
 /* List container */
 .list-box {
-  width: 250px;
+  width: 300px;
   height: auto;
   background-color: lightgray;
   padding: 10px;
   margin-right: 10px;
+  position: relative;
+  padding-bottom: 110px;
+  border-radius: 8px;
 }
 
 .card {
-  padding: 10px;
+  padding: 15px 90px 15px 15px;
   background-color: white;
   margin-bottom: 10px;
+  position: relative;
+  border-radius: 5px;
+}
+
+.move {
+  position: absolute;
+  padding: 5px;
+  top: 10px;
+  right: 10px;
 }
 
 .contentInput {
   display: block;
   border: none;
+  margin-bottom: 10px;
 }
 
 .listTitle {
+  font-size: 18px;
+  margin-bottom: 10px;
   border: none;
   background-color: lightgrey;
-  
+}
+
+.bottom {
+  position: absolute;
+  bottom: 20px;
+}
+
+.addCardInput, .addCardBtn {
+  border: none;
+  padding: 10px;
+  margin: 10px 0px;
+}
+
+.deleteCardBtn, .deleteListBtn {
+  border: none;
+  padding: 6px 10px;
+  border-radius: 2px;
+  color: white;
+}
+
+.deleteCardBtn {
+  background-color: rgb(247, 136, 136);
+}
+
+.deleteListBtn {
+  background-color: rgb(243, 81, 81);
+}
+
+.addListBtn {
+  border: none;
+  color: white;
+  padding: 8px 10px;
+  background-color: rgb(100, 100, 207);
+  margin: 10px 0px;
+  font-size: 15px;
+  border-radius: 5px;
+}
+
+button {
+  cursor: pointer;
+}
+
+.addCardInput {
+  width: 200px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.addCardBtn {
+  background-color: rgb(100, 100, 207);
+  color: white;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
 }
