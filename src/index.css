@@ -27,3 +27,14 @@ body {
   background-color: white;
   margin-bottom: 10px;
 }
+
+.contentInput {
+  display: block;
+  border: none;
+}
+
+.listTitle {
+  border: none;
+  background-color: lightgrey;
+  
+}

@@ -4,7 +4,7 @@ function App() {
   const [inputList, setInputList] = useState([
     []
   ])
-  // [ [a,a,a,a,a], [df,fdf,fdfd,fdfd]]
+  // [ [a,a,a,a,a, {title: blue}], [df,fdf,fdfd,fdfd]]
 
   const handleAddCard = (e,i) => {
     const list = [...inputList]
@@ -19,7 +19,7 @@ function App() {
   const handleAddList = (e) => {
     const list = [...inputList]
 
-    list.push([])
+    list.push([{title: ''}])
 
     setInputList(list)
   }
@@ -32,8 +32,18 @@ function App() {
     setInputList(list)
   }
 
-  const handleEditCard = (e,i) => {
-    
+  const handleEditCard = (e,i,ind) => {
+    const list = [...inputList]
+
+    list[i][ind] = e.target.value
+
+    setInputList(list)
+  }
+
+  const handleEditListTitle = (e, i) => {
+    const list = [...inputList]
+
+    list[i].title = e.target.value
   }
 
   return (
@@ -42,12 +52,24 @@ function App() {
         { inputList.map((list, i) => {
           return (
             <div className="list-box" key={`list${i+1}`}>
+              <input 
+                type="text" 
+                placeholder="Write title here"
+                className="listTitle"
+                onChange={(e) => handleEditListTitle(e, i)}
+              />
               { list.map((card, ind) => {
                 return (
-                  <div className="card" key={`card${ind+1}`}>
-                    <p>{card}</p>
-                    <button onClick={(e) => handleDeleteCard(e,i,ind)}>Delete</button>
-                    <button onClick={(e) => handleEditCard(e,i,ind)}>Edit</button>
+                  <div>
+                    {ind !== 0 && <div className="card" key={`card${ind+1}`}>
+                      <input 
+                        type="text"
+                        value={card} 
+                        className="contentInput"
+                        onChange={(e) => handleEditCard(e,i,ind)}
+                      />
+                      <button onClick={(e) => handleDeleteCard(e,i,ind)}>Delete</button>
+                    </div>}
                   </div>
                 )
               })}
