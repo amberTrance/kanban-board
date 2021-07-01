@@ -105,12 +105,12 @@ function App() {
                       onChange={(e) => handleSelect(e, i, ind)}
                     >
                       <option value={"none"}>move</option>
-                      {inputList.map((card, i) => {
-                        if (card.title !== '')
+                      {inputList.map((card, indx) => {
+                        if (card.title !== '' && i !== indx)
                         return (
                           <option
                             key={`title${i + 1}`}
-                            value={i}
+                            value={indx}
                             name={card.title}
                           >
                             {card.title}
