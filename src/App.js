@@ -84,9 +84,8 @@ function App() {
                 onChange={(e) => handleEditListTitle(e, i)}
               />
               { list['cards'].map((card, ind) => {
-                // Each row can have a max of 24 characters
-                // Dynamically add a row for each 24 characters
-                let rows = Math.ceil(card.length / 24)
+                // Dynamically add a row for each 40 characters
+                let rows = Math.ceil(card.length / 40)
                 return (
                   <div className="card" key={`card${ind+1}`}>
                     <textarea
