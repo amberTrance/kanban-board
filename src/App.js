@@ -2,13 +2,13 @@ import { useState } from 'react'
 
 function App() {
   const [inputList, setInputList] = useState([
-    [{title: ''}]
+    {title: '', cards: []}
   ])
 
   const handleAddCard = (e, i) => {
     const list = [...inputList]
 
-    list[i].push(e.target.parentNode.firstChild.value)
+    list[i]['cards'].push(e.target.parentNode.firstChild.value)
 
     e.target.parentNode.firstChild.value = ''
 
@@ -18,7 +18,7 @@ function App() {
   const handleAddList = (e) => {
     const list = [...inputList]
 
-    list.push([{title: ''}])
+    list.push({title: '', cards: []})
 
     setInputList(list)
   }
@@ -26,7 +26,7 @@ function App() {
   const handleDeleteCard = (e, i, ind) => {
     const list = [...inputList]
 
-    list[i].splice(ind, 1)
+    list[i]['cards'].splice(ind, 1)
 
     setInputList(list)
   }
@@ -34,7 +34,7 @@ function App() {
   const handleEditCard = (e, i, ind) => {
     const list = [...inputList]
 
-    list[i][ind] = e.target.value
+    list[i]['cards'][ind] = e.target.value
 
     setInputList(list)
   }
@@ -42,7 +42,7 @@ function App() {
   const handleEditListTitle = (e, i) => {
     const list = [...inputList]
 
-    list[i][0].title = e.target.value
+    list[i].title = e.target.value
 
     setInputList(list)
   }
@@ -59,8 +59,8 @@ function App() {
     const list = [...inputList]
 
     if (e.target.value !== 'none') {
-      list[e.target.value].push(list[i][ind])
-      list[i].splice(ind, 1)
+      list[e.target.value]['cards'].push(list[i]['cards'][ind])
+      list[i]['cards'].splice(ind, 1)
       setInputList(list)
     }
   }
@@ -68,52 +68,51 @@ function App() {
   return (
     <div className="App">
       <div className="lists">
+        {console.log(inputList)}
         { inputList.map((list, i) => {
-          {console.log(inputList)}
           return (
             <div className="list-box" key={`list${i+1}`}>
               <input 
                 type="text" 
                 placeholder="Write title here"
                 className="listTitle"
-                value={inputList[i][0].title}
+                value={inputList[i].title}
                 onChange={(e) => handleEditListTitle(e, i)}
               />
-              { list.map((card, ind) => {
+              { list['cards'].map((card, ind) => {
+                // Each row can have a max of 24 characters
+                // Dynamically add a row for each 24 characters
+                let rows = Math.ceil(card.length / 24)
                 return (
-                  <div key={ind}>
-                    {ind !== 0 && 
-                    <div className="card" key={`card${ind+1}`}>
-                      <span
-                        role="textbox"
-                        contentEditable
-                        className="contentInput"
-                        onChange={(e) => handleEditCard(e, i, ind)}
-                      >{card}</span>
-                      <button 
-                        onClick={(e) => handleDeleteCard(e, i, ind)}
-                        className="deleteCardBtn"
-                      >Delete</button>
+                  <div className="card" key={`card${ind+1}`}>
+                    <textarea
+                      rows={rows}
+                      value={card}
+                      className="contentInput"
+                      onChange={(e) => handleEditCard(e, i, ind)}
+                    />
+                    <button 
+                      onClick={(e) => handleDeleteCard(e, i, ind)}
+                      className="deleteCardBtn"
+                    >Delete</button>
 
-                      <select
-                          className="move"
-                          onChange={(e) => handleSelect(e, i, ind)}
-                        >
-                          <option value={"none"}>move</option>
-                          {inputList.map((card, i) => {
-                            return (
-                              <option
-                                key={`title${i + 1}`}
-                                value={i}
-                                name={card[0].title}
-                              >
-                                {card[0].title}
-                              </option>
-                            )
-                          })}
-                      </select>
-
-                    </div>}
+                    <select
+                      className="move"
+                      onChange={(e) => handleSelect(e, i, ind)}
+                    >
+                      <option value={"none"}>move</option>
+                      {inputList.map((card, i) => {
+                        return (
+                          <option
+                            key={`title${i + 1}`}
+                            value={i}
+                            name={card.title}
+                          >
+                            {card.title}
+                          </option>
+                        )
+                      })}
+                    </select>
                   </div>
                 )
               })}
