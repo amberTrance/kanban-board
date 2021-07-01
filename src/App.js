@@ -6,13 +6,17 @@ function App() {
   ])
 
   const handleAddCard = (e, i) => {
-    const list = [...inputList]
+    let value = e.target.parentNode.firstChild.value
 
-    list[i]['cards'].push(e.target.parentNode.firstChild.value)
+    if (value !== '') {
+      const list = [...inputList]
 
-    e.target.parentNode.firstChild.value = ''
+      list[i]['cards'].push(value)
 
-    setInputList(list)
+      e.target.parentNode.firstChild.value = ''
+
+      setInputList(list)
+    }
   }
 
   const handleAddList = (e) => {
@@ -59,7 +63,7 @@ function App() {
     
     if (e.target.value !== 'none') {
       const list = [...inputList]
-      
+
       list[e.target.value]['cards'].push(list[i]['cards'][ind])
       list[i]['cards'].splice(ind, 1)
       setInputList(list)
