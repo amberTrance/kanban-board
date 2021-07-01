@@ -56,9 +56,10 @@ function App() {
   }
 
   const handleSelect = (e, i, ind) => {
-    const list = [...inputList]
-
+    
     if (e.target.value !== 'none') {
+      const list = [...inputList]
+      
       list[e.target.value]['cards'].push(list[i]['cards'][ind])
       list[i]['cards'].splice(ind, 1)
       setInputList(list)
@@ -68,7 +69,6 @@ function App() {
   return (
     <div className="App">
       <div className="lists">
-        {console.log(inputList)}
         { inputList.map((list, i) => {
           return (
             <div className="list-box" key={`list${i+1}`}>
@@ -102,6 +102,7 @@ function App() {
                     >
                       <option value={"none"}>move</option>
                       {inputList.map((card, i) => {
+                        if (card.title !== '')
                         return (
                           <option
                             key={`title${i + 1}`}
