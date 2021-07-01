@@ -109,7 +109,7 @@ function App() {
                         if (card.title !== '' && i !== indx)
                         return (
                           <option
-                            key={`title${i + 1}`}
+                            key={`title${indx + 1}`}
                             value={indx}
                             name={card.title}
                           >
