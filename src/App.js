@@ -19,6 +19,18 @@ function App() {
     }
   }
 
+  const handleCardEnter = (e, i) => {
+    if (e.key === 'Enter' && e.target.value !== '') {
+      const list = [...inputList]
+
+      list[i]['cards'].push(e.target.value)
+
+      e.target.value = ''
+
+      setInputList(list)
+    }
+  }
+
   const handleAddList = (e) => {
     const list = [...inputList]
 
@@ -126,6 +138,7 @@ function App() {
                   type="text" 
                   placeholder="Add another card"
                   className="addCardInput"
+                  onKeyDown={(e) => handleCardEnter(e, i)}
                 />
                 <button 
                   onClick={(e) => handleAddCard(e, i)}
