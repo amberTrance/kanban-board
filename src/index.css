@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap');
 
 :root {
-  --back: rgb(205, 235, 248);
+  --back: rgb(170, 179, 180);
 }
 
 * {
@@ -9,12 +9,15 @@
   font-family: 'Open Sans', sans-serif;
 }
 
-body {
-  margin: 20px;
+.App {
+  height: 1000px;
+  display: table;
+  min-width: 100vw;
 }
 
 .lists {
   display: flex;
+  margin: 20px 10px 10px 20px;
 }
 
 /* List container */
@@ -27,7 +30,7 @@ body {
   position: relative;
   padding-bottom: 110px;
   border-radius: 8px;
-  box-shadow: 1px 2px 3px rgb(124, 138, 179)
+  box-shadow: 1px 2px 3px rgb(15, 59, 80)
 }
 
 .card {
@@ -36,7 +39,8 @@ body {
   margin-bottom: 10px;
   position: relative;
   border-radius: 5px;
-  box-shadow: 0px 2px 3px rgb(139, 163, 199);
+  box-shadow: 0px 2px 3px rgb(116, 126, 141);
+  color: grey;
 }
 
 .deleteCardBtn, 
@@ -59,9 +63,6 @@ body {
   margin-bottom: 10px;
   width: 270px;
   resize: none;
-}
-
-.contentInput {
   border-radius: 3px;
 }
 
@@ -70,7 +71,9 @@ body {
   margin-bottom: 10px;
   border: none;
   background-color: var(--back);
-  color: rgb(51, 51, 51);
+  color: white;
+  font-weight: bold;
+  letter-spacing: 1px;
 }
 
 .bottom {
@@ -91,6 +94,11 @@ body {
 .deleteListBtn {
   padding: 7px 12px;
   border-radius: 3px;
+  background-color: rgb(194, 23, 165);
+}
+
+.deleteListBtn:hover {
+  background-color: rgb(109, 6, 112);
 }
 
 .deleteCardBtn {
@@ -103,18 +111,10 @@ body {
   background-color: rgba(16, 60, 110, 0.863);
 }
 
-.deleteListBtn {
-  background-color: rgb(209, 117, 212);
-}
-
-.deleteListBtn:hover {
-  background-color: rgb(196, 71, 201);
-}
-
 .addListBtn {
   padding: 8px 10px;
   background-color: rgb(100, 100, 207);
-  margin: 10px 0px;
+  margin: 0px 20px;
   font-size: 15px;
   border-radius: 5px;
 }
@@ -134,13 +134,13 @@ button {
 }
 
 .addCardBtn {
-  background-color: rgb(32, 179, 154);
+  background-color: rgb(43, 107, 136);
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
 }
 
 .addCardBtn:hover {
-  background-color: rgb(11, 204, 146);
+  background-color: rgb(3, 54, 75);
 }
 
 textarea:focus, input:focus{

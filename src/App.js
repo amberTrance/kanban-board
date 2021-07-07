@@ -20,7 +20,11 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className="App"
+      style={{
+        backgroundImage: 'url(/picture.jpg)',
+      }}
+    >
       <div className="lists">
         { inputList.map((list, i) => {
           return (
