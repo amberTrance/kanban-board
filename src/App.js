@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import DeleteCardBtn from './DeleteCardBtn'
 
 function App() {
   const [inputList, setInputList] = useState([
@@ -35,14 +36,6 @@ function App() {
     const list = [...inputList]
 
     list.push({title: '', cards: []})
-
-    setInputList(list)
-  }
-
-  const handleDeleteCard = (e, i, ind) => {
-    const list = [...inputList]
-
-    list[i]['cards'].splice(ind, 1)
 
     setInputList(list)
   }
@@ -106,28 +99,27 @@ function App() {
                       className="contentInput"
                       onChange={(e) => handleEditCard(e, i, ind)}
                     />
-                    <button 
-                      onClick={(e) => handleDeleteCard(e, i, ind)}
-                      className="deleteCardBtn"
-                    >Delete</button>
+                    <DeleteCardBtn i={i} ind={ind} inputList={inputList} setInputList={setInputList}/>
 
                     <select
                       className="move"
                       onChange={(e) => handleSelect(e, i, ind)}
                     >
                       <option value={"none"}>move</option>
-                      {inputList.map((card, indx) => {
-                        if (card.title !== '' && i !== indx)
-                        return (
-                          <option
-                            key={`title${indx + 1}`}
-                            value={indx}
-                            name={card.title}
-                          >
-                            {card.title}
-                          </option>
-                        )
-                      })}
+                      {inputList
+                        .filter(card => card.title !== '')
+                        .map((card, indx) => {
+                          if (i === indx) return false
+                          return (
+                            <option
+                              key={`title${indx + 1}`}
+                              value={indx}
+                              name={card.title}
+                            >
+                              {card.title}
+                            </option>
+                          )
+                        })}
                     </select>
                   </div>
                 )
