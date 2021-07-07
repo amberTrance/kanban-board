@@ -1,52 +1,15 @@
 import { useState } from 'react'
 import DeleteCardBtn from './DeleteCardBtn'
+import SelectList from './SelectList'
+import AddCard from './AddCard'
+import DeleteListBtn from './DeleteListBtn'
+import AddListBtn from './AddListBtn'
+import EditCard from './EditCard'
 
 function App() {
   const [inputList, setInputList] = useState([
     {title: '', cards: []}
   ])
-
-  const handleAddCard = (e, i) => {
-    let value = e.target.parentNode.firstChild.value
-
-    if (value !== '') {
-      const list = [...inputList]
-
-      list[i]['cards'].push(value)
-
-      e.target.parentNode.firstChild.value = ''
-
-      setInputList(list)
-    }
-  }
-
-  const handleCardEnter = (e, i) => {
-    if (e.key === 'Enter' && e.target.value !== '') {
-      const list = [...inputList]
-
-      list[i]['cards'].push(e.target.value)
-
-      e.target.value = ''
-
-      setInputList(list)
-    }
-  }
-
-  const handleAddList = (e) => {
-    const list = [...inputList]
-
-    list.push({title: '', cards: []})
-
-    setInputList(list)
-  }
-
-  const handleEditCard = (e, i, ind) => {
-    const list = [...inputList]
-
-    list[i]['cards'][ind] = e.target.value
-
-    setInputList(list)
-  }
 
   const handleEditListTitle = (e, i) => {
     const list = [...inputList]
@@ -54,25 +17,6 @@ function App() {
     list[i].title = e.target.value
 
     setInputList(list)
-  }
-
-  const handleDeleteList = (e, i) => {
-    const list = [...inputList]
-
-    list.splice(i, 1)
-    
-    setInputList(list)
-  }
-
-  const handleSelect = (e, i, ind) => {
-    
-    if (e.target.value !== 'none') {
-      const list = [...inputList]
-
-      list[e.target.value]['cards'].push(list[i]['cards'][ind])
-      list[i]['cards'].splice(ind, 1)
-      setInputList(list)
-    }
   }
 
   return (
@@ -93,63 +37,53 @@ function App() {
                 let rows = Math.ceil(card.length / 40)
                 return (
                   <div className="card" key={`card${ind+1}`}>
-                    <textarea
+                    <EditCard
                       rows={rows}
-                      value={card}
-                      className="contentInput"
-                      onChange={(e) => handleEditCard(e, i, ind)}
+                      card={card}
+                      i={i} 
+                      ind={ind} 
+                      inputList={inputList} 
+                      setInputList={setInputList}
                     />
-                    <DeleteCardBtn i={i} ind={ind} inputList={inputList} setInputList={setInputList}/>
 
-                    <select
-                      className="move"
-                      onChange={(e) => handleSelect(e, i, ind)}
-                    >
-                      <option value={"none"}>move</option>
-                      {inputList
-                        .filter(card => card.title !== '')
-                        .map((card, indx) => {
-                          if (i === indx) return false
-                          return (
-                            <option
-                              key={`title${indx + 1}`}
-                              value={indx}
-                              name={card.title}
-                            >
-                              {card.title}
-                            </option>
-                          )
-                        })}
-                    </select>
+                    <DeleteCardBtn 
+                      i={i} 
+                      ind={ind} 
+                      inputList={inputList} 
+                      setInputList={setInputList}
+                    />
+
+                    <SelectList
+                      i={i} 
+                      ind={ind} 
+                      inputList={inputList} 
+                      setInputList={setInputList}
+                    />
                   </div>
                 )
               })}
 
               <div className="bottom">
-                <input 
-                  type="text" 
-                  placeholder="Add another card"
-                  className="addCardInput"
-                  onKeyDown={(e) => handleCardEnter(e, i)}
+                <AddCard
+                  i={i}
+                  inputList={inputList} 
+                  setInputList={setInputList}
                 />
-                <button 
-                  onClick={(e) => handleAddCard(e, i)}
-                  className="addCardBtn"
-                >Add Card</button>
                 
-                <button 
-                  onClick={(e) => handleDeleteList(e, i)}
-                  className="deleteListBtn"
-                >Delete List</button>
+              <DeleteListBtn
+                i={i}
+                inputList={inputList}
+                setInputList={setInputList}
+              />
               </div>
             </div> 
           )
         })}
       </div>
-      <button 
-        onClick={(e) => handleAddList(e)}
-        className="addListBtn"
-      >Add New List</button>
+      <AddListBtn
+        inputList={inputList}
+        setInputList={setInputList}
+      />
     </div>
   )
 }
