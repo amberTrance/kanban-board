@@ -38,7 +38,7 @@ function App() {
               />
               { list['cards'].map((card, ind) => {
                 // Dynamically add a row for each 40 characters
-                let rows = Math.ceil(card.length / 40)
+                let rows = Math.ceil(card.length / 32)
                 return (
                   <div className="card" key={`card${ind+1}`}>
                     <EditCard
