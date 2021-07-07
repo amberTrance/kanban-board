@@ -74,11 +74,11 @@ function App() {
                   setInputList={setInputList}
                 />
                 
-              <DeleteListBtn
-                i={i}
-                inputList={inputList}
-                setInputList={setInputList}
-              />
+                <DeleteListBtn
+                  i={i}
+                  inputList={inputList}
+                  setInputList={setInputList}
+                />
               </div>
             </div> 
           )

@@ -1,16 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap');
 
 :root {
-  --back: rgb(170, 179, 180);
+  --back: rgb(106, 158, 165);
 }
 
 * {
   margin: 0;
   font-family: 'Open Sans', sans-serif;
+  color: rgb(82, 82, 82);
+  letter-spacing: 0.3px
 }
 
 .App {
-  height: 1000px;
+  min-height: 1200px;
   display: table;
   min-width: 100vw;
 }
@@ -28,7 +30,7 @@
   padding: 10px;
   margin-right: 10px;
   position: relative;
-  padding-bottom: 110px;
+  padding-bottom: 120px;
   border-radius: 8px;
   box-shadow: 1px 2px 3px rgb(15, 59, 80)
 }
@@ -37,10 +39,11 @@
   padding: 15px;
   background-color: white;
   margin-bottom: 10px;
-  position: relative;
   border-radius: 5px;
+}
+
+.card, .addCardBtn, .addCardInput {
   box-shadow: 0px 2px 3px rgb(116, 126, 141);
-  color: grey;
 }
 
 .deleteCardBtn, 
@@ -49,12 +52,17 @@
 .addCardBtn {
   color: white;
 }
+.deleteCardBtn:active, 
+.deleteListBtn:active,
+.addListBtn:active,
+.addCardBtn:active {
+  transform: scale(0.98)
+}
 
 .move {
-  position: absolute;
+  float: right;
   padding: 5px;
-  bottom: 10px;
-  right: 10px;
+  margin-bottom: 10px;
 }
 
 .contentInput {
@@ -63,7 +71,8 @@
   margin-bottom: 10px;
   width: 270px;
   resize: none;
-  border-radius: 3px;
+  border-radius: 4px;
+  font-size: 15px;
 }
 
 .listTitle {
@@ -84,7 +93,7 @@
 .addCardInput, .addCardBtn {
   border: none;
   padding: 10px;
-  margin: 10px 0px;
+  margin: 12px 0px;
 }
 
 .deleteCardBtn, .deleteListBtn, .addListBtn {
@@ -93,8 +102,9 @@
 
 .deleteListBtn {
   padding: 7px 12px;
-  border-radius: 3px;
+  border-radius: 4px;
   background-color: rgb(194, 23, 165);
+  font-size: 14px;
 }
 
 .deleteListBtn:hover {
@@ -103,7 +113,7 @@
 
 .deleteCardBtn {
   padding: 6px 10px;
-  border-radius: 2px;
+  border-radius: 3px;
   background-color: rgba(77, 143, 219, 0.863);
 }
 
@@ -149,6 +159,6 @@ textarea:focus, input:focus{
 }
 
 select {
-  border-radius: 3px;
-  border-color: var(--back);
+  border-radius: 4px;
+  border-color: rgb(148, 218, 218);
 }
